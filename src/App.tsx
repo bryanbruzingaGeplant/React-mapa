@@ -1,24 +1,29 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
+import "./App.css";
+import "leaflet/dist/leaflet.css";
+import { Icon } from "leaflet";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+    <div>
+      <MapContainer center={[51.505, -0.09]} zoom={13}>
+        <TileLayer
+          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+        />
+        <Marker
+          position={[51.505, -0.09]}
+          icon={
+            new Icon({
+              iconRetinaUrl: require("leaflet/dist/images/marker-icon-2x.png"),
+              iconUrl: require("leaflet/dist/images/marker-icon.png"),
+              shadowUrl: require("leaflet/dist/images/marker-shadow.png"),
+            })
+          }
         >
-          Learn React
-        </a>
-      </header>
+          <Popup>Olá, sou um popup.</Popup>
+        </Marker>
+      </MapContainer>
     </div>
   );
 }
